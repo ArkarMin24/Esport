@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { HiMenu, HiX } from 'react-icons/hi'
-import { GiLaurelsTrophy } from 'react-icons/gi'
+import logo from '../../one.jpg'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Teams', href: '#teams' },
-  { label: 'Schedule', href: '#schedule' },
-  { label: 'Bracket', href: '#bracket' },
+  { label: 'Tournaments', href: '#tournaments' },
+  { label: 'News', href: '#news' },
   { label: 'Register', href: '#register' },
 ]
 
@@ -20,15 +20,13 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-blue-400/15 bg-slate-950/95 text-slate-100 shadow-[0_15px_40px_-24px_rgba(0,0,0,0.9)] backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-cyan-400/20 bg-slate-950/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#home" className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-slate-100" onClick={() => setIsOpen(false)}>
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-amber-300/30 bg-gradient-to-br from-amber-300 to-orange-600 text-slate-950 shadow-lg shadow-amber-500/20">
-            <GiLaurelsTrophy className="text-2xl" aria-hidden="true" />
-          </span>
+        <a href="#home" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+          <img src={logo} alt="UTYCC logo" className="h-11 w-11 rounded-full border border-cyan-400/40 object-contain shadow-lg shadow-cyan-400/20" />
           <span className="flex flex-col leading-tight">
-            <span className="text-xs text-amber-400">MLBB</span>
-            <span className="text-lg font-semibold text-white">Championship</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-300">UTYCC</span>
+            <span className="text-sm font-semibold text-white">eSport Arena</span>
           </span>
         </a>
 
@@ -37,7 +35,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 transition hover:text-amber-300 focus-visible:outline-none focus-visible:text-amber-300"
+              className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 transition hover:text-cyan-300 focus-visible:outline-none"
             >
               {link.label}
             </a>
@@ -47,7 +45,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex items-center justify-center rounded-lg border border-slate-700 bg-slate-900 p-2.5 text-slate-100 transition hover:border-amber-300/50 hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 md:hidden"
+          className="inline-flex items-center justify-center rounded-lg border border-cyan-400/30 bg-slate-900/80 p-2.5 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 md:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -56,14 +54,14 @@ export default function Navbar() {
         </button>
       </div>
 
-      <div id="mobile-navigation" className={`${isOpen ? 'block' : 'hidden'} border-t border-slate-800 bg-slate-950/98 md:hidden`}>
+      <div id="mobile-navigation" className={`${isOpen ? 'block' : 'hidden'} border-t border-slate-800/80 bg-slate-950/95 md:hidden`}>
         <nav className="space-y-1 px-4 py-4 sm:px-6">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block rounded-lg px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-slate-200 transition hover:bg-amber-400/10 hover:text-amber-300"
+              className="block rounded-lg px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-slate-200 transition hover:bg-cyan-400/10 hover:text-cyan-300"
             >
               {link.label}
             </a>

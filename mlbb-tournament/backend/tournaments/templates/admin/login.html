@@ -1,0 +1,24 @@
+{% extends "admin/login.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}">
+{% endblock %}
+
+{% block title %}UTYCC eSport Arena Admin | {% translate 'Log in' %}{% endblock %}
+
+{% block content %}
+<div class="login-screen">
+  <div class="login-panel">
+    <div class="login-header">
+      <div class="login-brand">
+        <span class="brand-tag">UTYCC</span>
+        <span class="brand-name">eSport Arena Admin</span>
+      </div>
+      <p class="login-subtitle">Secure staff access for tournament control</p>
+    </div>
+    {{ block.super }}
+  </div>
+</div>
+{% endblock %}

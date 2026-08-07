@@ -1,0 +1,35 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block title %}UTYCC Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-hero" style="margin-bottom:1.5rem; padding:1.75rem; background: linear-gradient(135deg, rgba(57, 118, 255, 0.22), rgba(0, 16, 45, 0.95)); border: 1px solid rgba(80, 181, 255, 0.16); border-radius: 1.25rem; box-shadow: 0 30px 80px rgba(0,0,0,0.24);">
+  <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between;">
+    <div style="min-width:240px;">
+      <h1 style="margin:0 0 .5rem; color:#ffffff; letter-spacing:0.06em; text-transform:uppercase;">UTYCC Esports Management</h1>
+      <p style="margin:0; color: rgba(232, 245, 255, 0.82); max-width:640px;">Manage tournaments, teams, matches, and participants in a premium esports admin experience. All existing Django admin tools remain available below.</p>
+    </div>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <img src="{% static 'admin_custom/logo.jpg' %}" alt="UTYCC Logo" style="max-height:72px; width:auto; object-fit:contain; border-radius: 0.85rem; background: rgba(255,255,255,0.05); padding:0.5rem;">
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-panels" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
+  <div class="panel" style="padding:1.35rem; background: rgba(10,24,45,0.82); border:1px solid rgba(80,181,255,0.12); border-radius:1rem;">
+    <h2>Quick access</h2>
+    <ul style="list-style:none; padding:0; margin:0; color: var(--admin-muted);">
+      <li><a class="viewlink" href="{% url 'admin:app_list' app_label='tournaments' %}">Tournament app</a></li>
+      <li><a class="viewlink" href="{% url 'admin:index' %}">Admin home</a></li>
+      <li><a class="viewlink" href="{% url 'admin:logout' %}">Sign out</a></li>
+    </ul>
+  </div>
+  <div class="panel" style="padding:1.35rem; background: rgba(10,24,45,0.82); border:1px solid rgba(80,181,255,0.12); border-radius:1rem;">
+    <h2>Live status</h2>
+    <p style="margin:0.5rem 0 0; color: rgba(232, 245, 255, 0.82);">Use the admin sidebar and list views for direct CRUD operations. All models, filters, actions, and inline editing remain unchanged.</p>
+  </div>
+</div>
+
+{{ block.super }}
+{% endblock %}

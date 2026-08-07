@@ -1,21 +1,23 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import TournamentInfo from './components/TournamentInfo'
 import Teams from './components/Teams'
+import TournamentInfo from './components/TournamentInfo'
 import MatchSchedule from './components/MatchSchedule'
-import TournamentBracket from './components/TournamentBracket'
 import TeamRegistration from './components/TeamRegistration'
+import NewsSection from './components/NewsSection'
+import Footer from './components/Footer'
 
 function App() {
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <TournamentInfo />
       <Teams />
+      <TournamentInfo />
       <MatchSchedule />
-      <TournamentBracket />
+      <NewsSection />
       <TeamRegistration />
+      <Footer />
     </main>
   )
 }

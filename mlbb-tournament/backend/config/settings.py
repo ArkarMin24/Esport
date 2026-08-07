@@ -12,6 +12,7 @@ if not DEBUG and SECRET_KEY == _default_secret_key:
     raise ImproperlyConfigured('DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is false.')
 
 INSTALLED_APPS = [
+    'tournaments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -20,7 +21,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'tournaments',
 ]
 
 MIDDLEWARE = [

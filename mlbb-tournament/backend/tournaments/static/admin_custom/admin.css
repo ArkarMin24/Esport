@@ -1,0 +1,285 @@
+:root {
+  --admin-bg: #08192f;
+  --admin-surface: #0f2547;
+  --admin-surface-2: #142d52;
+  --admin-border: rgba(110, 177, 255, 0.16);
+  --admin-text: #e8f5ff;
+  --admin-muted: #98b8d8;
+  --admin-accent: #50b5ff;
+  --admin-danger: #ff5370;
+  --admin-success: #5de0a0;
+  --admin-shadow: 0 20px 80px rgba(0, 0, 0, 0.28);
+}
+
+body {
+  background: radial-gradient(circle at top left, rgba(80, 181, 255, 0.22), transparent 24%),
+              radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent 20%),
+              linear-gradient(180deg, #020b18 0%, #08192f 48%, #020b18 100%);
+  color: var(--admin-text);
+}
+
+#header, #user-tools, #content-main, #footer {
+  background: transparent;
+}
+
+#header {
+  border-bottom: 1px solid rgba(110, 177, 255, 0.12);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+#branding h1, #branding h1 a {
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+#branding h1 a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#branding h1 a img {
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+#user-tools {
+  color: var(--admin-muted);
+}
+
+#user-tools a, .breadcrumbs a, .module h2, .nav-sidebar a, .breadcrumbs {
+  color: var(--admin-text);
+}
+
+#user-tools a:hover, .module h2, .nav-sidebar a:hover, .breadcrumbs a:hover {
+  color: var(--admin-accent);
+}
+
+#container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+#content-main {
+  padding: 1.75rem 1.5rem 2rem;
+}
+
+#content-main > .module, .module {
+  background: rgba(8, 25, 47, 0.84);
+  border: 1px solid rgba(110, 177, 255, 0.1);
+  border-radius: 1.25rem;
+  box-shadow: var(--admin-shadow);
+}
+
+.module h2 {
+  color: #ffffff;
+  border-bottom: 1px solid rgba(110, 177, 255, 0.12);
+  padding-bottom: 0.5rem;
+}
+
+.module caption, .module caption a {
+  color: var(--admin-muted);
+}
+
+.breadcrumbs {
+  padding: 0.85rem 1rem;
+  border-radius: 0.9rem;
+  background: rgba(9, 28, 55, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+}
+
+#content-main .form-row, #content-main .field-box, .inline-related, .related-widget-wrapper {
+  background: rgba(16, 41, 70, 0.72);
+  border: 1px solid rgba(110, 177, 255, 0.08);
+  border-radius: 0.85rem;
+}
+
+.inline-group, .tabular.inline-related th, .tabular.inline-related td {
+  background: rgba(10, 24, 47, 0.72);
+}
+
+fieldset.module, fieldset.module.aligned {
+  border: 1px solid rgba(110, 177, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+fieldset.module h2, fieldset.module legend {
+  color: #ffffff;
+}
+
+fieldset.module table, .inline-related table, .tabular.inline-related table {
+  background: transparent;
+}
+
+.module table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.module th, .module td {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.module th {
+  background: rgba(18, 55, 92, 0.88);
+  color: #d9f2ff;
+  font-weight: 600;
+}
+
+.module td {
+  background: rgba(7, 17, 33, 0.55);
+}
+
+.module tr:nth-child(even) td {
+  background: rgba(9, 20, 38, 0.55);
+}
+
+input, select, textarea, .vTextField, .vLargeTextField, .vDateField, .vTimeField {
+  background: rgba(4, 14, 30, 0.82);
+  border: 1px solid rgba(110, 177, 255, 0.16);
+  color: var(--admin-text);
+  border-radius: 0.75rem;
+}
+
+input[type=checkbox], input[type=radio] {
+  accent-color: var(--admin-accent);
+}
+
+select {
+  color: var(--admin-text);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid rgba(80, 181, 255, 0.32);
+  outline-offset: 2px;
+}
+
+.submit-row, .submit-row input[type=submit] {
+  background: rgba(78, 139, 218, 0.12);
+}
+
+.submit-row input[type=submit] {
+  color: #ffffff;
+  border: 1px solid rgba(80, 181, 255, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  border-radius: 0.75rem;
+}
+
+.submit-row input[type=submit]:hover {
+  background: rgba(80, 181, 255, 0.18);
+}
+
+.button, .deletelink, .related-widget-wrapper a, .historylink, .viewlink, .addlink {
+  color: var(--admin-text);
+}
+
+.button, .deletelink, .related-widget-wrapper a {
+  border: 1px solid rgba(80, 181, 255, 0.18);
+  background: rgba(12, 34, 64, 0.82);
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.button:hover, .deletelink:hover, .related-widget-wrapper a:hover, .historylink:hover, .viewlink:hover, .addlink:hover {
+  background: rgba(80, 181, 255, 0.16);
+  color: #ffffff;
+}
+
+.notifications, .messagelist, .errornote, .success, .warning, .info {
+  background: rgba(35, 70, 120, 0.9);
+  border: 1px solid rgba(80, 181, 255, 0.14);
+  color: #e8f5ff;
+}
+
+.errornote {
+  border-left: 4px solid var(--admin-danger);
+}
+
+.success {
+  border-left: 4px solid var(--admin-success);
+}
+
+.warning {
+  border-left: 4px solid rgba(255, 188, 0, 0.8);
+}
+
+#footer {
+  padding: 1rem 1.5rem;
+  color: var(--admin-muted);
+}
+
+#footer a {
+  color: var(--admin-accent);
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+  color: #ffffff;
+}
+
+#content-main .module > .actions, .module .actions {
+  background: rgba(9, 26, 48, 0.72);
+}
+
+#content-main .module .actions li, .module .actions li {
+  display: inline-block;
+}
+
+.nav-sidebar {
+  background: rgba(3, 9, 18, 0.88);
+  border-right: 1px solid rgba(110, 177, 255, 0.12);
+}
+
+.nav-sidebar li a {
+  color: var(--admin-text);
+}
+
+.nav-sidebar li a:hover, .nav-sidebar li.selected a {
+  background: rgba(80, 181, 255, 0.14);
+  color: #ffffff;
+}
+
+#sidebar {
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+#content table tr th, #content table tr td {
+  vertical-align: middle;
+}
+
+/* Login and index style overrides */
+.login {
+  background: linear-gradient(180deg, rgba(5, 15, 35, 0.95) 0%, rgba(7, 22, 42, 0.96) 100%);
+}
+
+.login form {
+  background: rgba(10, 24, 45, 0.9);
+  border: 1px solid rgba(80, 181, 255, 0.14);
+  border-radius: 1rem;
+  box-shadow: var(--admin-shadow);
+}
+
+.login label {
+  color: var(--admin-text);
+}
+
+.login input[type=text], .login input[type=password] {
+  background: rgba(9, 20, 38, 0.88);
+}
+
+.login input[type=submit] {
+  background: rgba(80, 181, 255, 0.22);
+  color: #ffffff;
+  border: 1px solid rgba(80, 181, 255, 0.3);
+}
+
+.login input[type=submit]:hover {
+  background: rgba(80, 181, 255, 0.32);
+}

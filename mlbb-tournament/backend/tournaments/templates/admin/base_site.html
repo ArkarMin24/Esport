@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}UTYCC eSport Arena Admin{% endblock %}
+
+{% block branding %}
+<h1 id="branding">
+  <a href="{{ site_url|default:'/' }}">
+    <span class="site-logo">UTYCC</span>
+    <span class="site-name">eSport Arena Admin</span>
+  </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+  {% if site_url %}
+    <a href="{{ site_url }}" class="viewlink">Back to site</a>
+  {% endif %}
+  {{ block.super }}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load i18n static %}
+{# This overrides the default admin/app_list.html to add lightweight SVG icons next to apps/models. #}
+<div class="app-list">
+  {% for app in app_list %}
+    <div class="app" data-app-label="{{ app.name }}">
+      <h3 class="app-title">{{ app.name }}</h3>
+      <ul class="models">
+      {% for model in app.models %}
+        <li class="model">
+          <a href="{{ model.admin_url }}" class="model-link">
+            <span class="model-icon" aria-hidden="true">{% include 'admin/icons/model.svg' %}</span>
+            <span class="model-name">{{ model.name }}</span>
+            {% if model.add_url %}<span class="addlink">Add</span>{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>
