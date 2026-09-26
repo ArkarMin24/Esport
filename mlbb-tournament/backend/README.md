@@ -8,6 +8,29 @@
 4. Create the database: `python manage.py migrate`
 5. Start the API: `python manage.py runserver`
 
+## Deploying the database
+
+This project now supports a production database via the DATABASE_URL environment variable. For deployment, use PostgreSQL (recommended) and set the following environment variables on your hosting platform:
+
+```bash
+DJANGO_SECRET_KEY=your-secret-key
+DJANGO_DEBUG=false
+DJANGO_ALLOWED_HOSTS=your-domain.com
+DATABASE_URL=postgres://user:password@host:5432/database_name
+```
+
+Common options:
+- Render: add a PostgreSQL database and set DATABASE_URL from the service environment.
+- Railway: create a PostgreSQL service and link it to your app.
+- ElephantSQL: create a database instance and use the provided connection URL.
+
+After setting the variables, run:
+
+```bash
+python manage.py migrate
+python manage.py collectstatic --noinput
+```
+
 ## Admin dashboard
 
 Create an administrator account with `python manage.py createsuperuser`, then visit `http://127.0.0.1:8000/admin/`.

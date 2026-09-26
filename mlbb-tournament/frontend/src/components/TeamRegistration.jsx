@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HiCheckCircle } from 'react-icons/hi'
-import { getApiErrorMessage, registerTeam } from '../services/api'
+import { fetchTournaments, getApiErrorMessage, registerTeam } from '../services/api'
 
 const initialValues = {
   teamName: '', captainName: '', player1: '', player2: '', player3: '', player4: '', player5: '', email: '', phone: '',
@@ -16,6 +16,10 @@ export default function TeamRegistration() {
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
+  const [tournaments, setTournaments] = useState([])
+  const [tournamentId, setTournamentId] = useState('')
+
+  useEffect(() => { fetchTournaments().then((items) => { setTournaments(items); setTournamentId(String(items[0]?.id || '')) }).catch((error) => setSubmitError(getApiErrorMessage(error, 'Unable to load tournaments.'))) }, [])
 
   function validate() {
     const nextErrors = {}
@@ -44,7 +48,7 @@ export default function TeamRegistration() {
     setSubmitError('')
     try {
       await registerTeam({
-        tournament: Number(import.meta.env.VITE_TOURNAMENT_ID || 1),
+        tournament: Number(tournamentId),
         name: values.teamName,
         captain_name: values.captainName,
         email: values.email,
@@ -66,7 +70,7 @@ export default function TeamRegistration() {
         <div className="mb-8 text-center">
           <p className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Join the Arena</p>
           <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">Register Your Team</h2>
-          <p className="mx-auto mt-3 max-w-lg text-sm text-slate-400">Submit your roster details for the next UTYCC esports challenge.</p>
+          <p className="mx-auto mt-3 max-w-lg text-sm text-slate-400">Lock in your five-player MLBB roster plus up to two substitutes before registration closes.</p>
         </div>
 
         {submitted && (
@@ -79,6 +83,7 @@ export default function TeamRegistration() {
 
         <form noValidate onSubmit={handleSubmit} className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-inner shadow-black/20 sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
+            <label className="sm:col-span-2"><span className="mb-2 block text-sm font-semibold text-slate-200">Tournament</span><select required value={tournamentId} onChange={(event) => setTournamentId(event.target.value)} className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white"><option value="">Select tournament</option>{tournaments.map((tournament) => <option key={tournament.id} value={tournament.id}>{tournament.name}</option>)}</select></label>
             {fields.map(([name, label]) => (
               <label key={name} className={name.startsWith('player') ? '' : 'sm:col-span-1'}>
                 <span className="mb-2 block text-sm font-semibold text-slate-200">{label}</span>

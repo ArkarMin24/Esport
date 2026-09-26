@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,6 +8,8 @@ _default_secret_key = 'django-insecure-local-development-key-change-before-deplo
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', _default_secret_key)
 DEBUG = os.getenv('DJANGO_DEBUG', 'true').lower() == 'true'
 ALLOWED_HOSTS = [host for host in os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if host]
+if not DEBUG:
+    ALLOWED_HOSTS += ['.onrender.com', 'localhost', '127.0.0.1']
 
 if not DEBUG and SECRET_KEY == _default_secret_key:
     raise ImproperlyConfigured('DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is false.')
@@ -48,7 +51,12 @@ TEMPLATES = [{
 WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
+DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES = {'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
+else:
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
+
 AUTH_PASSWORD_VALIDATORS = []
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -63,7 +71,9 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:5173', 'http://localhost:5173']
-CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = ['accept', 'content-type', 'x-csrftoken']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5173', 'http://localhost:5173']
 
 if not DEBUG:
     SECURE_SSL_REDIRECT = True

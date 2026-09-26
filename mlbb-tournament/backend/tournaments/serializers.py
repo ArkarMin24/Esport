@@ -36,6 +36,23 @@ class MatchSerializer(serializers.ModelSerializer):
         fields = ['id', 'tournament', 'stage', 'team_one', 'team_one_name', 'team_two', 'team_two_name', 'scheduled_at', 'best_of', 'status', 'team_one_score', 'team_two_score']
 
 
+class DashboardTournamentSerializer(serializers.ModelSerializer):
+    team_count = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Tournament
+        fields = ['id', 'name', 'description', 'prize_pool', 'start_date', 'end_date', 'registration_deadline', 'game_mode', 'max_teams', 'team_count']
+
+
+class DashboardTeamSerializer(serializers.ModelSerializer):
+    players = PlayerSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Team
+        fields = ['id', 'tournament', 'name', 'captain_name', 'email', 'phone_number', 'registered_at', 'players']
+        read_only_fields = ['registered_at', 'players']
+
+
 class TeamRegistrationSerializer(serializers.ModelSerializer):
     players = PlayerSerializer(many=True, min_length=5, max_length=5)
 

@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion'
 import { FaCrown } from 'react-icons/fa'
-
-const teams = [
-  { name: 'Apex Reign', game: 'Valorant', roster: '5-man roster', accent: 'from-cyan-400 to-blue-600' },
-  { name: 'Nova Forge', game: 'MLBB', roster: '7-man roster', accent: 'from-sky-400 to-indigo-600' },
-  { name: 'Titan Pulse', game: 'PUBG', roster: '4-man squad', accent: 'from-blue-400 to-cyan-600' },
-  { name: 'Phoenix Arc', game: 'League of Legends', roster: '5-man squad', accent: 'from-indigo-400 to-slate-700' },
-]
+import { useEffect, useState } from 'react'
+import { fetchTeams, getApiErrorMessage } from '../services/api'
 
 export default function Teams() {
+  const [teams, setTeams] = useState([])
+  const [error, setError] = useState('')
+
+  useEffect(() => { fetchTeams().then(setTeams).catch((requestError) => setError(getApiErrorMessage(requestError, 'Unable to load teams.'))) }, [])
+
   return (
     <section id="teams" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -17,9 +17,11 @@ export default function Teams() {
             <p className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Campus Squads</p>
             <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">UTYCC Team Lineup</h2>
           </div>
-          <p className="max-w-md text-sm text-slate-400">Official school teams competing across top-tier games with dedicated training and coaching support.</p>
+            <p className="max-w-md text-sm text-slate-400">Registered MLBB squads competing for the campus title.</p>
         </div>
 
+        {error && <p role="alert" className="rounded-xl border border-rose-400/30 bg-rose-400/10 p-4 text-sm text-rose-200">{error}</p>}
+        {!error && !teams.length && <p className="rounded-xl border border-dashed border-white/10 p-6 text-sm text-slate-500">Teams will appear here after registration.</p>}
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {teams.map((team, index) => (
             <motion.article
@@ -38,11 +40,11 @@ export default function Teams() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">{team.name}</h3>
-                  <p className="mt-1 text-sm text-slate-400">{team.game}</p>
+                  <p className="mt-1 text-sm text-slate-400">MLBB · Registered</p>
                 </div>
               </div>
               <div className="relative mt-6 border-t border-white/10 pt-4">
-                <p className="flex items-center gap-2 text-sm text-slate-300"><FaCrown className="text-cyan-300" aria-hidden="true" /> {team.roster}</p>
+                <p className="flex items-center gap-2 text-sm text-slate-300"><FaCrown className="text-cyan-300" aria-hidden="true" /> {team.players?.length || 0} players · Captain: {team.captain_name}</p>
               </div>
             </motion.article>
           ))}
